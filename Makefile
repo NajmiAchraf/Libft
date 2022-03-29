@@ -6,7 +6,7 @@
 #    By: anajmi <anajmi@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/05 20:14:52 by anajmi            #+#    #+#              #
-#    Updated: 2022/03/20 18:07:51 by anajmi           ###   ########.fr        #
+#    Updated: 2022/03/29 13:53:58 by anajmi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,9 +52,20 @@ SRC_PART2 = 	\
 	./ft_putendl_fd.c	\
 	./ft_putnbr_fd.c
 
+BONUS = \
+	./ft_lstnew_bonus.c	 	\
+	./ft_lstadd_front_bonus.c	\
+	./ft_lstsize_bonus.c		\
+	./ft_lstlast_bonus.c		\
+	./ft_lstadd_back_bonus.c	\
+	./ft_lstclear_bonus.c		\
+	./ft_lstdelone_bonus.c
+
 PARTS = $(SRC_PART1) $(SRC_PART2)
 
 OBJS = $(PARTS:.c=.o)
+
+OBBS = $(BONUS:.c=.o)
 
 C_RED = \033[1;31m
 C_GREEN = \033[1;32m
@@ -73,7 +84,7 @@ $(NAME) : $(OBJS)
 	@echo "$(C_GREEN)[LIBFT CREATED!]$(C_RES)"
 
 clean :
-	@rm -f $(OBJS)
+	@rm -f $(OBJS) $(OBBS)
 	@echo "$(C_RED)[LIBFT OBJECTS DELETED!]$(C_RES)"
 
 fclean : clean
@@ -81,3 +92,7 @@ fclean : clean
 	@echo "$(C_RED)[LIBFT ARCHIVE DELETED!]$(C_RES)"
 
 re : fclean all
+	
+bonus : $(OBBS)
+	@ar -rc $(NAME) $(OBBS)
+	@echo "$(C_L_BLUE)[LIBFT BONUS CREATED!]$(C_RES)"
